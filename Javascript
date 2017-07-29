@@ -1,74 +1,67 @@
-var done = false; 
+var done = false;
 var colorArr = [];
-
-function addStep(){
-  var color = Math.floor((Math.random() * 4) + 1);
-  colorArr.push(color);
-  console.log(colorArr);
+var status = document.getElementById('status'); 
+var redSound = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound1.mp3');
+var blueSound = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3');
+var yellowSound = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound3.mp3');
+var greenSound = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound4.mp3');
+function addStep() {
+    var color = Math.floor((Math.random() * 4) + 1);
+    colorArr.push(color);
+    console.log(colorArr);
 }
 var red = document.getElementById('redBlock');
 var blue = document.getElementById('blueBlock');
 var yellow = document.getElementById('yellowBlock');
 var green = document.getElementById('greenBlock');
-var timeout; 
+var timeout;
 var newArr = [];
-function displayColors(){
-  console.log("Function is running");
- if(colorArr.length == 0){
-   console.log("Timeout'd");
-   clearTimeout(timeout);
-   done = true; 
- }
-  else{
-    console.log("Color is running: " + colorArr[0]);
-    console.log("Color Arr: " + colorArr);
-    console.log("New Arr: " + newArr);
-     if(colorArr[0] == 1){ // red 
-      red.style.background="red";
-      blue.style.background="white";
-      yellow.style.background="white";
-      green.style.background="white";
+
+function displayColors() {
+  // Need to create a fade in effect for the colors
+  status.innerHTML = "Playing";
+    if (colorArr.length == 0) {
+        clearTimeout(timeout);
+        done = true;
+        
+    } else {
+        if (colorArr[0] == 1) { // red 
+            red.style.background = "red";
+           redSound.play();
+        }
+        if (colorArr[0] == 2) { // blue
+            blue.style.background = "blue";
+           blueSound.play();
+        }
+        if (colorArr[0] == 3) { // yellow
+            yellow.style.background = "yellow";
+            yellowSound.play();
+        }
+        if (colorArr[0] == 4) { //green
+            green.style.background = "green";
+          greenSound.play();
+        }
+        
+        newArr.push(colorArr[0]);
+        colorArr.shift();
     }
-     if(colorArr[0] == 2){ // blue
-      red.style.background="white";
-      blue.style.background="blue";
-      yellow.style.background="white";
-      green.style.background="white";
-    }
-     if(colorArr[0] == 3){ // yellow
-      red.style.background="white";
-      blue.style.background="white";
-      yellow.style.background="yellow";
-      green.style.background="white";
-    }
-     if(colorArr[0] == 4){ //green
-      red.style.background="white";
-      blue.style.background="white";
-      yellow.style.background="white";
-      green.style.background="green";
-    }
-    newArr.push(colorArr[0]);
-    colorArr.shift();
-  }
-    
+
 }
 
-function loadColors(){
-  done = false; 
-  newArr = [];
-  console.log("newArr in load colors()" + newArr); 
-  console.log("colorArr in loadColors()" + colorArr);
-  function myTimeoutFunction()
-  {
-    console.log("newArr in myTimeOutFunction()" + newArr); 
-  console.log("colorArr in myTimeOutFuncction()" + colorArr);
-    displayColors();
-    if(!done){
-    timeout = setTimeout(myTimeoutFunction, 4000);
+function loadColors() {
+    status.innerHTML = 'Watching';
+    done = false;
+    newArr = [];
+    function myTimeoutFunction() {
+           red.style.background = "white";
+          blue.style.background = "white";
+          yellow.style.background = "white";
+          green.style.background = "white"; 
+        displayColors();
+        if (!done) {
+            timeout = setTimeout(myTimeoutFunction, 4000);
+        }
     }
-  }
-  myTimeoutFunction();
-  
-}
+    myTimeoutFunction();
 
-  
+}
