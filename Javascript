@@ -1,4 +1,4 @@
-
+var done = false; 
 var colorArr = [];
 
 function addStep(){
@@ -17,6 +17,7 @@ function displayColors(){
  if(colorArr.length == 0){
    console.log("Timeout'd");
    clearTimeout(timeout);
+   done = true; 
  }
   else{
     console.log("Color is running: " + colorArr[0]);
@@ -53,6 +54,7 @@ function displayColors(){
 }
 
 function loadColors(){
+  done = false; 
   newArr = [];
   console.log("newArr in load colors()" + newArr); 
   console.log("colorArr in loadColors()" + colorArr);
@@ -61,7 +63,9 @@ function loadColors(){
     console.log("newArr in myTimeOutFunction()" + newArr); 
   console.log("colorArr in myTimeOutFuncction()" + colorArr);
     displayColors();
+    if(!done){
     timeout = setTimeout(myTimeoutFunction, 4000);
+    }
   }
   myTimeoutFunction();
   
