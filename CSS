@@ -1,0 +1,13 @@
+button{
+   font-family: 'Roboto', sans-serif;
+}
+
+#blocks > button{
+  width: 100px; 
+  height: 100px; 
+}
+
+body{
+  text-align: center; 
+  font-family: 'Roboto', sans-serif;
+}
