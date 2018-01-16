@@ -12,6 +12,10 @@
     </div>
 </nav>
 
+<!--
+<button onclick='addStep()'>dfjk;lasdfklj</button>
+<button onclick='loadColors()'>akl;sdfjasf </button>
+-->
 <div id="blocks">
 <button id="redBlock" onclick="repeatColors(1)">Red</button>
 <button id="blueBlock" onclick="repeatColors(2)">Blue</button>
@@ -19,10 +23,11 @@
 <button id="greenBlock" onclick="repeatColors(4)">Green</button>
 </div>
 
-<p>Current Streak:<p id="currentSteps">0</p></p>
+<p>Current Streak:<span id="currentSteps">0</span></p>
+<p>Personal Best:<span id="highScore">0</span></p>
 
 <button onclick = "reset()"> RESET </button>
-<button onclick="toggleStrict()" id="turnStrict"> TOGGLE STRICT (CURRENTLY OFF) </button>
+<button onclick="toggleStrict()" id="turnStrict"> Strict (Off) </button>
 
 <p id="youSuck"> </p>
 <p id="victory"> </p>
