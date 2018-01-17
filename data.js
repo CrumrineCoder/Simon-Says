@@ -58,9 +58,14 @@ function loadColors() {
   myTimeoutFunction();
 }
 
-function changeDifficulty(x, y) {
-  difficulty = x;
-  time = y; 
+function changeDifficulty(newDifficulty, newTime, label) {
+  difficulty = newDifficulty;
+  time = newTime; 
+  if(newDifficulty == 0){
+    console.log("Ridge");
+    document.getElementByID("easy").classList.add("on")
+     document.getElementByID("easy").classList.remove("off")
+  }
 }
 // After the user completes the chain, a new step is added.
 function addStep() {
@@ -101,8 +106,10 @@ function repeatColors(number, sound) {
       // If we finish the newArr array.
       if (newArr.length == 0) {
         // Continue onto the next step
-        addStep();
-        loadColors();
+        document.getElementById("victory").innerHTML = "Round Cleared";
+        setTimeout(function(){   addStep();
+        loadColors(); document.getElementById("victory").innerHTML = ""; }, 1250);
+      
       }
       // If the user loses
     } else {
@@ -124,8 +131,9 @@ function repeatColors(number, sound) {
 function displayColors() {
   // Need to create a fade in effect for the colors
   if (colorArr.length == 0) {
-    setTimeout(clearTimeout(timeout), 3000);
-    done = true;
+   clearTimeout(timeout);  done = true;
+      
+   
     //   colorArr = newArr.slice(0);
   } else {
     if (colorArr[0] == 1) {
