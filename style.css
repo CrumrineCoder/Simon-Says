@@ -1,10 +1,16 @@
 /* Entire Document */
+html, body {
+    margin: 0;
+    height: 100%;
+
+}
 
 body {
   width: 100%;
   text-align: center;
   margin: 0 auto;
   font-family: "Roboto", sans-serif;
+ 	 background: black; 
 }
 
 /* Nav */
@@ -32,17 +38,17 @@ nav {
 
 /* Simon Container */
 #simonSaysContainer {
-  width: 580px; /* change to vw */
-  height: 580px; /* change to vh */
+  width: 550px; 
+  height: 550px;
   margin: auto;
   position: absolute;
-  top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   border: solid 10px #454545;
   border-radius: 100%;
   overflow: hidden;
+   
 }
 
 .button {
@@ -96,7 +102,7 @@ button:focus {
   position: absolute;
   width: 250px;
   height: 250px;
-  top: 50%;
+  top: 57%;
   left: 50%;
   margin-left: -125px;
   margin-top: -125px;

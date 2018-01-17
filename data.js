@@ -91,32 +91,27 @@ function changeDifficulty(newDifficulty, newTime, label) {
 // After the user completes the chain, a new step is added.
 function addStep() {
   // Length 20 being the end of the game, stop the game if the length of the array is 20.
-  if (colorArr.length == 20) {
-    document.getElementById("victory").innerHTML =
-      "You have won by gaining a streak of 20!";
-    reset();
-  } else {
+  if (colorArr.length > personalBest) {
+      personalBest = colorArr.length;
+      highscore.innerHTML = personalBest;
+    }
     // Get a random color
     var color = Math.floor(Math.random() * 4 + 1);
 
     // If the current chain is longer than the user's personal best, then we add to the personal best and show the user.
-    if (colorArr.length > personalBest) {
-      personalBest = colorArr.length;
-      highscore.innerHTML = personalBest;
-    }
+    
     // Add the current color to the color array
     colorArr.push(color);
     // Show the streak to the user.
     currentStreak.innerHTML = colorArr.length;
-  }
+  
 }
 // Function for the red, blue, yellow, and green buttons
 function repeatColors(number, sound) {
   // If the Simon Says is done showing the colors
   if (done) {
     // Clear the end slate htmls
-    document.getElementById("youSuck").innerHTML = "";
-    document.getElementById("victory").innerHTML = "";
+    document.getElementById("message").innerHTML = "";
     // If the user clicked on the right one
     if (number == newArr[0]) {
       // Add the correct thing to the colorArr from the newArr and remove it from the newArr.
@@ -127,23 +122,28 @@ function repeatColors(number, sound) {
       // If we finish the newArr array.
       if (newArr.length == 0) {
         // Continue onto the next step
-        document.getElementById("victory").innerHTML = "Round Cleared";
+		 if (colorArr.length != 5) {
+        document.getElementById("message").innerHTML = "Round Cleared";
         setTimeout(function() {
           addStep();
           loadColors();
-          document.getElementById("victory").innerHTML = "";
+          document.getElementById("message").innerHTML = "";
         }, 1250);
-      }
+      } else{
+		   document.getElementById("message").innerHTML = "You won by gaining a streak of 20! Click 'RESET' to play again.";
+		   
+	  }
+	  }
       // If the user loses
     } else {
       // If the strict setting is on, reset
       if (strict) {
-        document.getElementById("youSuck").innerHTML =
-          "You have missed a button press and had strict mode on.";
+        document.getElementById("message").innerHTML =
+          "You missed a button press and had strict mode on.";
         reset();
       } else {
         // Add on the rest of the colors and redo the last step for the user.
-        document.getElementById("victory").innerHTML = "Let's try that again";
+        document.getElementById("message").innerHTML = "Let's try that again";
         setTimeout(function() {
           colorArr = colorArr.concat(newArr);
           newArr = [];
@@ -152,7 +152,8 @@ function repeatColors(number, sound) {
       }
     }
   }
-}
+  }
+
 // Called through an interval. This is for repeating the instructions back to the player.
 function displayColors() {
   // Need to create a fade in effect for the colors
