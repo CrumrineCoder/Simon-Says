@@ -1,3 +1,7 @@
+// 0 = easy, 1= medium, 2= hard
+var difficulty = 1;
+// Time between the bounces. 1500 is easy and is 1.5 seconds, 1000 is medium and is 1 second, and 500 is hard and is half a second
+var time = 3000;
 var currentStreak = document.getElementById("currentSteps");
 var highscore = document.getElementById("highScore");
 // The colors
@@ -46,12 +50,17 @@ function loadColors() {
     displayColors();
     // While the game is not done, keep Simon Says on an interval.
     if (!done) {
-      timeout = setTimeout(myTimeoutFunction, 1000);
+      timeout = setTimeout(myTimeoutFunction, time);
     }
   }
   myTimeoutFunction();
 }
-// After the user completes the chain, a new step is added. 
+
+function changeDifficulty(x, y) {
+  difficulty = x;
+  time = y; 
+}
+// After the user completes the chain, a new step is added.
 function addStep() {
   // Length 20 being the end of the game, stop the game if the length of the array is 20.
   if (colorArr.length == 20) {
@@ -61,7 +70,8 @@ function addStep() {
   } else {
     // Get a random color
     var color = Math.floor(Math.random() * 4 + 1);
-    // If the current chain is longer than the user's personal best, then we add to the personal best and show the user. 
+
+    // If the current chain is longer than the user's personal best, then we add to the personal best and show the user.
     if (colorArr.length > personalBest) {
       personalBest = colorArr.length;
       highscore.innerHTML = personalBest;
@@ -81,11 +91,11 @@ function repeatColors(number, sound) {
     document.getElementById("victory").innerHTML = "";
     // If the user clicked on the right one
     if (number == newArr[0]) {
-      // Add the correct thing to the colorArr from the newArr and remove it from the newArr.    
+      // Add the correct thing to the colorArr from the newArr and remove it from the newArr.
       colorArr.push(newArr[0]);
       newArr.shift();
       // Play the appropriate sound
-      sound.play(); 
+      sound.play();
       // If we finish the newArr array.
       if (newArr.length == 0) {
         // Continue onto the next step
@@ -100,7 +110,7 @@ function repeatColors(number, sound) {
           "You have missed a button press and had strict mode on.";
         reset();
       } else {
-        // Add on the rest of the colors and redo the last step for the user. 
+        // Add on the rest of the colors and redo the last step for the user.
         colorArr = colorArr.concat(newArr);
         newArr = [];
         loadColors();
@@ -108,7 +118,7 @@ function repeatColors(number, sound) {
     }
   }
 }
-// Called through an interval. This is for repeating the instructions back to the player. 
+// Called through an interval. This is for repeating the instructions back to the player.
 function displayColors() {
   // Need to create a fade in effect for the colors
   if (colorArr.length == 0) {
@@ -147,7 +157,7 @@ function reset() {
   addStep();
   loadColors();
 }
-// Toggling the variable that determines if the user is penalizing for getting a step wrong. 
+// Toggling the variable that determines if the user is penalizing for getting a step wrong.
 function toggleStrict() {
   if (strict) {
     strict = false;
