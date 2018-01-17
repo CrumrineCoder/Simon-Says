@@ -25,16 +25,19 @@
   </div>
   <div id="control">
     <p>Current Streak:<p id="currentSteps">0</p></p>
-
     <button id="reset" onclick="reset()"> RESET </button>
     <button onclick="toggleStrict()" id="turnStrict" class="off"> Strict (Off) </button>
     <br />
-    <button id="easy" class="off" onclick="changeDifficulty(0, 1500, 'easy')">Easy</button>
-    <button id="medium" class="on" onclick="changeDifficulty(1, 1000, 'medium')">Medium</button>
-    <button id="high" class="off" onclick="changeDifficulty(2, 500, 'hard')">Hard</button>
+    <button id="easy" class="off" onclick="changeDifficulty(0, 1500)">Easy</button>
+    <button id="medium" class="on" onclick="changeDifficulty(1, 1000)">Medium</button>
+    <button id="hard" class="off" onclick="changeDifficulty(2, 500)">Hard</button>
     <p>Personal Best:<p id="highScore">0</p></p>
   </div>
   <p id="youSuck"> </p>
   <p id="victory"> </p>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
   <script type="text/javascript" src="data.js"></script>
 </body>
