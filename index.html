@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 
 <head>
-    <title>Simon Says App</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+  <title>Simon Says App</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
+
 <body>
-<nav> 
-	<div id="ad">
-     Simon Says App by
+  <nav>
+    <div id="ad">
+      Simon Says App by
       <a href="https://crumrinecoder.github.io/Profile-Website-version2/" id="nic"> Nicolas Crumrine</span></a>
     </div>
-</nav>
+  </nav>
+<div id="simonSaysContainer">
 
-<div id="blocks">
-<button id="redBlock" onclick="repeatColors(1, redSound)"></button>
-<button id="blueBlock" onclick="repeatColors(2,blueSound)"></button>
-<button id="yellowBlock" onclick="repeatColors(3, yellowSound)"></button>
-<button id="greenBlock" onclick="repeatColors(4, greenSound)"></button>
+     <button id="greenBlock" class="col-xs-6 button" onclick="repeatColors(4, greenSound)"></button>
+    <button id="redBlock" class="col-xs-6 button" onclick="repeatColors(1, redSound)"></button>
+        <button id="yellowBlock" class="col-xs-6 button" onclick="repeatColors(3, yellowSound)"></button>
+    <button id="blueBlock" class="col-xs-6 button" onclick="repeatColors(2,blueSound)"></button>
+
+   
+  </div>
+
+  <p>Current Streak:<span id="currentSteps">0</span></p>
+  <p>Personal Best:<span id="highScore">0</span></p>
+
+  <button onclick="reset()"> RESET </button>
+  <button onclick="toggleStrict()" id="turnStrict"> Strict (Off) </button>
+  <button onclick="changeDifficulty(0, 1500)">Easy</button>
+  <button onclick="changeDifficulty(1, 1000)">Medium</button>
+  <button onclick="changeDifficulty(2, 500)">Hard</button>
 </div>
-
-<p>Current Streak:<span id="currentSteps">0</span></p>
-<p>Personal Best:<span id="highScore">0</span></p>
-
-<button onclick = "reset()"> RESET </button>
-<button onclick="toggleStrict()" id="turnStrict"> Strict (Off) </button>
-<button onclick="changeDifficulty(0, 1500)">Easy</button>
-<button onclick="changeDifficulty(1, 1000)">Medium</button>
-<button onclick="changeDifficulty(2, 500)">Hard</button>
-<p id="youSuck"> </p>
-<p id="victory"> </p>
-
-<script type="text/javascript" src="data.js"></script>
+  <p id="youSuck"> </p>
+  <p id="victory"> </p>
+  <script type="text/javascript" src="data.js"></script>
 </body>
