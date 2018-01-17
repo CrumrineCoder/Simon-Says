@@ -1,10 +1,11 @@
 var currentStreak = document.getElementById("currentSteps");
 var highscore = document.getElementById("highScore");
+// The colors
 var red = document.getElementById("redBlock");
 var blue = document.getElementById("blueBlock");
 var yellow = document.getElementById("yellowBlock");
 var green = document.getElementById("greenBlock");
-// Sounds 
+// Sounds
 var redSound = new Audio(
   "https://s3.amazonaws.com/freecodecamp/simonSound1.mp3"
 );
@@ -17,12 +18,18 @@ var yellowSound = new Audio(
 var greenSound = new Audio(
   "https://s3.amazonaws.com/freecodecamp/simonSound4.mp3"
 );
+// Interval
 var timeout;
-var newArr = [];
-var done = false;
+// The array of colors added to the chain that the user has to follow. We flip numbers between these two arrays constantly.
+// ColorArr is deplted when going through the colors for the user, and newArr is depleted when the user goes through the colors
 var colorArr = [];
+var newArr = [];
+// When false, the game continues. If true, then the game stops.
+var done = false;
+// If Strict is true, colorArr resets if the user messes up. If not, the step continues.
 var strict = false;
-var personalBest = 0; 
+// The user's high score
+var personalBest = 0;
 
 window.onload = addStep();
 window.onload = loadColors();
@@ -37,14 +44,14 @@ function loadColors() {
     yellow.style.background = "#CCCF18";
     green.style.background = "#25C217";
     displayColors();
-    // While the game is not done, keep Simon Says on an interval. 
+    // While the game is not done, keep Simon Says on an interval.
     if (!done) {
       timeout = setTimeout(myTimeoutFunction, 1000);
     }
   }
   myTimeoutFunction();
 }
-
+// After the user completes the chain, a new step is added. 
 function addStep() {
   // Length 20 being the end of the game, stop the game if the length of the array is 20.
   if (colorArr.length == 20) {
@@ -54,37 +61,44 @@ function addStep() {
   } else {
     // Get a random color
     var color = Math.floor(Math.random() * 4 + 1);
-    // Add the color to the color array.
-     if(colorArr.length > personalBest){
-      personalBest = colorArr.length
-      highscore.innerHTML = personalBest; 
+    // If the current chain is longer than the user's personal best, then we add to the personal best and show the user. 
+    if (colorArr.length > personalBest) {
+      personalBest = colorArr.length;
+      highscore.innerHTML = personalBest;
     }
+    // Add the current color to the color array
     colorArr.push(color);
-    // Show the streak to the user. 
+    // Show the streak to the user.
     currentStreak.innerHTML = colorArr.length;
-   
   }
 }
-
+// Function for the red, blue, yellow, and green buttons
 function repeatColors(number) {
+  // If the Simon Says is done showing the colors
   if (done) {
+    // Clear the end slate htmls
     document.getElementById("youSuck").innerHTML = "";
     document.getElementById("victory").innerHTML = "";
+    // If the user clicked on the right one
     if (number == newArr[0]) {
+      // Add the correct thing to the colorArr from the newArr and remove it from the newArr.
       colorArr.push(newArr[0]);
       newArr.shift();
+      // If we finish the newArr array.
       if (newArr.length == 0) {
+        // Continue onto the next step
         addStep();
         loadColors();
       }
-      inArray.innerHTML = colorArr;
-      inArraySub.innerHTML = newArr;
+      // If the user loses
     } else {
+      // If the strict setting is on, reset
       if (strict) {
         document.getElementById("youSuck").innerHTML =
           "You have missed a button press and had strict mode on.";
         reset();
       } else {
+        // Add on the rest of the colors and redo the last step for the user. 
         colorArr = colorArr.concat(newArr);
         newArr = [];
         loadColors();
@@ -92,7 +106,9 @@ function repeatColors(number) {
     }
   }
 }
+// Called through an interval. This is for repeating the instructions back to the player. 
 function displayColors() {
+  console.log(colorArr); 
   // Need to create a fade in effect for the colors
   if (colorArr.length == 0) {
     clearTimeout(timeout);
@@ -123,22 +139,20 @@ function displayColors() {
     colorArr.shift();
   }
 }
-
+// Return everything to step 1
 function reset() {
   newArr = [];
   colorArr = [];
   addStep();
   loadColors();
 }
-
+// Toggling the variable that determines if the user is penalizing for getting a step wrong. 
 function toggleStrict() {
   if (strict) {
     strict = false;
-    document.getElementById("turnStrict").innerHTML =
-      "Strict (Off)";
+    document.getElementById("turnStrict").innerHTML = "Strict (Off)";
   } else if (!strict) {
     strict = true;
-    document.getElementById("turnStrict").innerHTML =
-      "Strict (On)";
+    document.getElementById("turnStrict").innerHTML = "Strict (On)";
   }
 }
