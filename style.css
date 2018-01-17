@@ -4,9 +4,8 @@ body {
   width: 100%;
   text-align: center;
   margin: 0 auto;
-    font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
-
 
 /* Nav */
 
@@ -37,8 +36,11 @@ nav {
   height: 580px; /* change to vh */
   margin: auto;
   position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-  border: solid 10px #444;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border: solid 10px #454545;
   border-radius: 100%;
   overflow: hidden;
 }
@@ -48,49 +50,50 @@ nav {
   height: 50%;
   border: solid 6px #444;
   padding: 100px;
-  
 }
 /* Buttons */
 
-button:focus {outline:0;}
+button:focus {
+  outline: 0;
+}
 
-#redBlock{
-    border-top: none  ;
-  border-right: none ;
-  background: #D91B1A; 
+#redBlock {
+  border-top: none;
+  border-right: none;
+  background: #d91b1a;
 }
-#redBlock:focus{
-  background:  #6B0D0D !important; 
+#redBlock:active {
+  background: #6b0d0d !important;
 }
-#blueBlock{
-   border-bottom: none ;
-  border-right: none  ;
-  background: #5B17C2; 
+#blueBlock {
+  border-bottom: none;
+  border-right: none;
+  background: #5b17c2;
 }
-#blueBlock:focus{
-  background:  #290D6B !important; 
+#blueBlock:active {
+  background: #290d6b !important;
 }
-#yellowBlock{
-    border-bottom: none ;
-  border-left: none  ;
-  background: #CCCF18; 
+#yellowBlock {
+  border-bottom: none;
+  border-left: none;
+  background: #cccf18;
 }
-#yellowBlock:focus{
-  background:  #879111 !important; 
+#yellowBlock:active {
+  background: #879111 !important;
 }
-#greenBlock{
-  border-top: none  ;
-  border-left: none  ;
-  background: #25C217; 
+#greenBlock {
+  border-top: none;
+  border-left: none;
+  background: #25c217;
 }
-#greenBlock:focus{
-  background:  #0D6B0F !important; 
+#greenBlock:active {
+  background: #0d6b0f !important;
 }
 
 /* Controls*/
 
-#control{
-   position: absolute;
+#control {
+  position: absolute;
   width: 250px;
   height: 250px;
   top: 50%;
@@ -99,5 +102,36 @@ button:focus {outline:0;}
   margin-top: -125px;
   border: solid 5px #444;
   border-radius: 100%;
-  background: #50808E;
+  background: #c0c0c0;
+  padding-top: 30px;
+}
+
+#control button {
+  background: #363636;
+  border: solid 1px black;
+  margin-bottom: 10px; 
+  font-size: 16px; 
+}
+.off {
+  color: #d1cc75;
+}
+
+.on {
+  color: #d1c81f;
+}
+
+#reset{
+  color: #D61E24; 
+}
+/* Streak and Highscore*/
+
+#highScore,
+#currentSteps {
+  border: solid 1px black;
+  background: grey;
+  color: white;
+  font-family: "Press Start 2P", cursive;
+  width: 20%;
+  margin: 0 auto;
+  padding: 5px 0px 0px 2px;
 }
