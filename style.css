@@ -1,10 +1,13 @@
 /* Entire Document */
+
 body {
   width: 100%;
   text-align: center;
   margin: 0 auto;
     font-family: 'Roboto', sans-serif;
 }
+
+
 /* Nav */
 
 nav {
@@ -28,38 +31,56 @@ nav {
   color: #4a9943;
 }
 
-/* Buttons */
-button{
-   font-family: 'Roboto', sans-serif;
+/* Simon Container */
+#simonSaysContainer {
+  width: 580px; /* change to vw */
+  height: 580px; /* change to vh */
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  border: solid 10px #444;
+  border-radius: 100%;
+  overflow: hidden;
 }
 
-#blocks > button{
-  width: 100px; 
-  height: 100px; 
-  border: 1px solid black; 
+.button {
+  width: 50%;
+  height: 50%;
+  border: solid 6px #444;
+  padding: 100px;
+  
 }
+/* Buttons */
 
 button:focus {outline:0;}
 
 #redBlock{
+    border-top: none  ;
+  border-right: none ;
   background: #D91B1A; 
 }
 #redBlock:hover{
   background:  #6B0D0D !important; 
 }
 #blueBlock{
+   border-bottom: none ;
+  border-right: none  ;
   background: #5B17C2; 
 }
 #blueBlock:hover{
   background:  #290D6B !important; 
 }
 #yellowBlock{
+    border-bottom: none ;
+  border-left: none  ;
   background: #CCCF18; 
 }
 #yellowBlock:hover{
   background:  #879111 !important; 
 }
 #greenBlock{
+  border-top: none  ;
+  border-left: none  ;
   background: #25C217; 
 }
 #greenBlock:hover{
