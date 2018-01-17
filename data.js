@@ -57,11 +57,11 @@ function changeDifficulty(newDifficulty, newTime, label) {
     } else if (newDifficulty == 2) {
         $("#hard").removeClass("off").addClass("on");
     }
-    if (difficulty == 0) {
+    if (difficulty == 0 && newDifficulty !=0) {
         $("#easy").removeClass("on").addClass("off");
-    } else if (difficulty == 1) {
+    } else if (difficulty == 1 && newDifficulty !=1) {
         $("#medium").removeClass("on").addClass("off");
-    } else if (difficulty == 2) {
+    } else if (difficulty == 2 && newDifficulty !=2) {
         $("#hard").removeClass("on").addClass("off");
     }
     difficulty = newDifficulty;
