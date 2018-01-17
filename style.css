@@ -1,16 +1,12 @@
 /* Entire Document */
-html, body {
-    margin: 0;
-    height: 100%;
 
-}
 
 body {
   width: 100%;
   text-align: center;
   margin: 0 auto;
   font-family: "Roboto", sans-serif;
- 	 background: black; 
+ 
 }
 
 /* Nav */
@@ -112,11 +108,13 @@ button:focus {
   padding-top: 30px;
 }
 
-#control button {
+#control button{
+   margin-bottom: 10px; 
+  font-size: 16px; 
+}
+#control button:not(#reset) {
   background: #363636;
   border: solid 1px black;
-  margin-bottom: 10px; 
-  font-size: 16px; 
 }
 .off {
   color: #d1cc75;
@@ -127,7 +125,12 @@ button:focus {
 }
 
 #reset{
-  color: #D61E24; 
+  color: #C91C22; 
+  background: ; 
+  border: solid 1px #450A0C; 
+}
+#reset:hover{
+  background: #AD9A9B; 
 }
 /* Streak and Highscore*/
 

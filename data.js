@@ -1,6 +1,7 @@
+
 // 0 = easy, 1= medium, 2= hard
 var difficulty = 1;
-// Time between the bounces. 1500 is easy and is 1.5 seconds, 1000 is medium and is 1 second, and 500 is hard and is half a second
+// Time between the bounces. 1500 is easy and is 1.5 seconds, 1000 is medium and is 1 second, and 600 is hard and is half a second
 var time = 1000;
 var currentStreak = document.getElementById("currentSteps");
 var highscore = document.getElementById("highScore");
@@ -9,20 +10,11 @@ var red = document.getElementById("redBlock");
 var blue = document.getElementById("blueBlock");
 var yellow = document.getElementById("yellowBlock");
 var green = document.getElementById("greenBlock");
-
 // Sounds
-var redSound = new Audio(
-  "https://s3.amazonaws.com/freecodecamp/simonSound1.mp3"
-);
-var blueSound = new Audio(
-  "https://s3.amazonaws.com/freecodecamp/simonSound2.mp3"
-);
-var yellowSound = new Audio(
-  "https://s3.amazonaws.com/freecodecamp/simonSound3.mp3"
-);
-var greenSound = new Audio(
-  "https://s3.amazonaws.com/freecodecamp/simonSound4.mp3"
-);
+var redSound = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound1.mp3");
+var blueSound = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound2.mp3");
+var yellowSound = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound3.mp3");
+var greenSound = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound4.mp3");
 // Interval
 var timeout;
 // The array of colors added to the chain that the user has to follow. We flip numbers between these two arrays constantly.
@@ -35,174 +27,156 @@ var done = false;
 var strict = false;
 // The user's high score
 var personalBest = 0;
-
 window.onload = addStep();
 window.onload = loadColors();
 
 function loadColors() {
-  done = false;
-  newArr = [];
-  // Reset all the colors
-  function myTimeoutFunction() {
-    red.style.background = "#D91B1A";
-    blue.style.background = "#5B17C2";
-    yellow.style.background = "#CCCF18";
-    green.style.background = "#25C217";
-    displayColors();
-    // While the game is not done, keep Simon Says on an interval.
-    if (!done) {
-      timeout = setTimeout(myTimeoutFunction, time);
+    done = false;
+    newArr = [];
+    // Reset all the colors
+    function myTimeoutFunction() {
+        red.style.background = "#D91B1A";
+        blue.style.background = "#5B17C2";
+        yellow.style.background = "#CCCF18";
+        green.style.background = "#25C217";
+        displayColors();
+        // While the game is not done, keep Simon Says on an interval.
+        if (!done) {
+            timeout = setTimeout(myTimeoutFunction, time);
+        }
     }
-  }
-  myTimeoutFunction();
+    myTimeoutFunction();
 }
 
 function changeDifficulty(newDifficulty, newTime, label) {
-  time = newTime;
-  if (newDifficulty == 0) {
-    $("#easy")
-      .removeClass("off")
-      .addClass("on");
-  } else if (newDifficulty == 1) {
-    $("#medium")
-      .removeClass("off")
-      .addClass("on");
-  } else if (newDifficulty == 2) {
-    $("#hard")
-      .removeClass("off")
-      .addClass("on");
-  }
-  if (difficulty == 0) {
-    $("#easy")
-      .removeClass("on")
-      .addClass("off");
-  } else if (difficulty == 1) {
-    $("#medium")
-      .removeClass("on")
-      .addClass("off");
-  } else if (difficulty == 2) {
-    $("#hard")
-      .removeClass("on")
-      .addClass("off");
-  }
-  difficulty = newDifficulty;
+    time = newTime;
+    if (newDifficulty == 0) {
+        $("#easy").removeClass("off").addClass("on");
+    } else if (newDifficulty == 1) {
+        $("#medium").removeClass("off").addClass("on");
+    } else if (newDifficulty == 2) {
+        $("#hard").removeClass("off").addClass("on");
+    }
+    if (difficulty == 0) {
+        $("#easy").removeClass("on").addClass("off");
+    } else if (difficulty == 1) {
+        $("#medium").removeClass("on").addClass("off");
+    } else if (difficulty == 2) {
+        $("#hard").removeClass("on").addClass("off");
+    }
+    difficulty = newDifficulty;
 }
-
 // After the user completes the chain, a new step is added.
 function addStep() {
-  // Length 20 being the end of the game, stop the game if the length of the array is 20.
-  if (colorArr.length > personalBest) {
-      personalBest = colorArr.length;
-      highscore.innerHTML = personalBest;
+    // Length 20 being the end of the game, stop the game if the length of the array is 20.
+    if (colorArr.length > personalBest) {
+        personalBest = colorArr.length;
+        highscore.innerHTML = personalBest;
     }
+    currentStreak.innerHTML = colorArr.length;
     // Get a random color
     var color = Math.floor(Math.random() * 4 + 1);
-
     // If the current chain is longer than the user's personal best, then we add to the personal best and show the user.
-    
     // Add the current color to the color array
     colorArr.push(color);
     // Show the streak to the user.
-    currentStreak.innerHTML = colorArr.length;
-  
 }
 // Function for the red, blue, yellow, and green buttons
 function repeatColors(number, sound) {
-  // If the Simon Says is done showing the colors
-  if (done) {
-    // Clear the end slate htmls
-    document.getElementById("message").innerHTML = "";
-    // If the user clicked on the right one
-    if (number == newArr[0]) {
-      // Add the correct thing to the colorArr from the newArr and remove it from the newArr.
-      colorArr.push(newArr[0]);
-      newArr.shift();
-      // Play the appropriate sound
-      sound.play();
-      // If we finish the newArr array.
-      if (newArr.length == 0) {
-        // Continue onto the next step
-		 if (colorArr.length != 5) {
-        document.getElementById("message").innerHTML = "Round Cleared";
-        setTimeout(function() {
-          addStep();
-          loadColors();
-          document.getElementById("message").innerHTML = "";
-        }, 1250);
-      } else{
-		   document.getElementById("message").innerHTML = "You won by gaining a streak of 20! Click 'RESET' to play again.";
-		   
-	  }
-	  }
-      // If the user loses
-    } else {
-      // If the strict setting is on, reset
-      if (strict) {
-        document.getElementById("message").innerHTML =
-          "You missed a button press and had strict mode on.";
-        reset();
-      } else {
-        // Add on the rest of the colors and redo the last step for the user.
-        document.getElementById("message").innerHTML = "Let's try that again";
-        setTimeout(function() {
-          colorArr = colorArr.concat(newArr);
-          newArr = [];
-          loadColors();
-        }, 1250);
-      }
+    // If the Simon Says is done showing the colors
+    if (done) {
+        // Clear the end slate htmls
+        document.getElementById("message").innerHTML = "";
+        // If the user clicked on the right one
+        if (number == newArr[0]) {
+            // Add the correct thing to the colorArr from the newArr and remove it from the newArr.
+            colorArr.push(newArr[0]);
+            newArr.shift();
+            // Play the appropriate sound
+            sound.play();
+            // If we finish the newArr array.
+            if (newArr.length == 0) {
+                // Continue onto the next step 
+                if (colorArr.length == 3) {
+                    document.getElementById("message").innerHTML = "You won by gaining a streak of 20! You can keep playing or you can reset. Another step will be added to entice you ;)";
+                    setTimeout(function() {
+                        addStep();
+                        loadColors();	
+                    }, 5500);
+                } else {
+                    document.getElementById("message").innerHTML = "Round Cleared";
+                    setTimeout(function() {
+                        addStep();
+                        loadColors();
+                        document.getElementById("message").innerHTML = "";
+                    }, 1250);
+                }
+            }
+            // If the user loses
+        } else {
+            // If the strict setting is on, reset
+            if (strict) {
+                document.getElementById("message").innerHTML = "You missed a button press and had strict mode on.";
+                reset();
+            } else {
+                // Add on the rest of the colors and redo the last step for the user.
+                document.getElementById("message").innerHTML = "Let's try that again";
+                setTimeout(function() {
+                    colorArr = colorArr.concat(newArr);
+                    newArr = [];
+                    loadColors();
+                }, 1250);
+            }
+        }
     }
-  }
-  }
-
+}
 // Called through an interval. This is for repeating the instructions back to the player.
 function displayColors() {
-  // Need to create a fade in effect for the colors
-  if (colorArr.length == 0) {
-    clearTimeout(timeout);
-    done = true;
-
-    //   colorArr = newArr.slice(0);
-  } else {
-    if (colorArr[0] == 1) {
-      // red
-      red.style.background = "#6B0D0D";
-      redSound.play();
+    // Need to create a fade in effect for the colors
+    if (colorArr.length == 0) {
+        clearTimeout(timeout);
+        done = true;
+        //   colorArr = newArr.slice(0);
+    } else {
+        if (colorArr[0] == 1) {
+            // red
+            red.style.background = "#6B0D0D";
+            redSound.play();
+        }
+        if (colorArr[0] == 2) {
+            // blue
+            blue.style.background = "#290D6B";
+            blueSound.play();
+        }
+        if (colorArr[0] == 3) {
+            // yellow
+            yellow.style.background = "#879111";
+            yellowSound.play();
+        }
+        if (colorArr[0] == 4) {
+            //green
+            green.style.background = "#0D6B0F";
+            greenSound.play();
+        }
+        newArr.push(colorArr[0]);
+        colorArr.shift();
     }
-    if (colorArr[0] == 2) {
-      // blue
-      blue.style.background = "#290D6B";
-      blueSound.play();
-    }
-    if (colorArr[0] == 3) {
-      // yellow
-      yellow.style.background = "#879111";
-      yellowSound.play();
-    }
-    if (colorArr[0] == 4) {
-      //green
-      green.style.background = "#0D6B0F";
-      greenSound.play();
-    }
-    newArr.push(colorArr[0]);
-    colorArr.shift();
-  }
 }
 // Return everything to step 1
 function reset() {
-  newArr = [];
-  colorArr = [];
-  addStep();
-  loadColors();
+    newArr = [];
+    colorArr = [];
+    addStep();
+    loadColors();
 }
 // Toggling the variable that determines if the user is penalizing for getting a step wrong.
 function toggleStrict() {
-      $("#turnStrict").toggleClass("on");
-  if (strict) {
-    strict = false;
-    document.getElementById("turnStrict").innerHTML = "Strict (Off)";
-
-  } else if (!strict) {
-    strict = true;
-    document.getElementById("turnStrict").innerHTML = "Strict (On)";
-  }
+    $("#turnStrict").toggleClass("on");
+    if (strict) {
+        strict = false;
+        document.getElementById("turnStrict").innerHTML = "Strict (Off)";
+    } else if (!strict) {
+        strict = true;
+        document.getElementById("turnStrict").innerHTML = "Strict (On)";
+    }
 }
