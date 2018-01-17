@@ -12,25 +12,27 @@
       <a href="https://crumrinecoder.github.io/Profile-Website-version2/" id="nic"> Nicolas Crumrine</span></a>
     </div>
   </nav>
-<div id="simonSaysContainer">
+  <div id="simonSaysContainer">
 
-     <button id="greenBlock" class="col-xs-6 button" onclick="repeatColors(4, greenSound)"></button>
+    <button id="greenBlock" class="col-xs-6 button" onclick="repeatColors(4, greenSound)"></button>
     <button id="redBlock" class="col-xs-6 button" onclick="repeatColors(1, redSound)"></button>
-        <button id="yellowBlock" class="col-xs-6 button" onclick="repeatColors(3, yellowSound)"></button>
+    <button id="yellowBlock" class="col-xs-6 button" onclick="repeatColors(3, yellowSound)"></button>
     <button id="blueBlock" class="col-xs-6 button" onclick="repeatColors(2,blueSound)"></button>
 
-   
   </div>
+  <div id="control">
+    <p>Current Streak:<span id="currentSteps">0</span></p>
 
-  <p>Current Streak:<span id="currentSteps">0</span></p>
-  <p>Personal Best:<span id="highScore">0</span></p>
 
-  <button onclick="reset()"> RESET </button>
-  <button onclick="toggleStrict()" id="turnStrict"> Strict (Off) </button>
-  <button onclick="changeDifficulty(0, 1500)">Easy</button>
-  <button onclick="changeDifficulty(1, 1000)">Medium</button>
-  <button onclick="changeDifficulty(2, 500)">Hard</button>
-</div>
+    <button onclick="reset()"> RESET </button>
+    <br/>
+    <button onclick="toggleStrict()" id="turnStrict"> Strict (Off) </button>
+    <br />
+    <button onclick="changeDifficulty(0, 1500)">Easy</button>
+    <button onclick="changeDifficulty(1, 1000)">Medium</button>
+    <button onclick="changeDifficulty(2, 500)">Hard</button>
+        <p>Personal Best:<span id="highScore">0</span></p>
+  </div>
   <p id="youSuck"> </p>
   <p id="victory"> </p>
   <script type="text/javascript" src="data.js"></script>
