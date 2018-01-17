@@ -1,4 +1,3 @@
-
 // 0 = easy, 1= medium, 2= hard
 var difficulty = 1;
 // Time between the bounces. 1500 is easy and is 1.5 seconds, 1000 is medium and is 1 second, and 500 is hard and is half a second
@@ -59,14 +58,36 @@ function loadColors() {
 }
 
 function changeDifficulty(newDifficulty, newTime, label) {
-  difficulty = newDifficulty;
-  time = newTime; 
-  if(newDifficulty == 0){
-    console.log("Ridge");
-    document.getElementByID("easy").classList.add("on")
-     document.getElementByID("easy").classList.remove("off")
+  time = newTime;
+  if (newDifficulty == 0) {
+    $("#easy")
+      .removeClass("off")
+      .addClass("on");
+  } else if (newDifficulty == 1) {
+    $("#medium")
+      .removeClass("off")
+      .addClass("on");
+  } else if (newDifficulty == 2) {
+    $("#hard")
+      .removeClass("off")
+      .addClass("on");
   }
+  if (difficulty == 0) {
+    $("#easy")
+      .removeClass("on")
+      .addClass("off");
+  } else if (difficulty == 1) {
+    $("#medium")
+      .removeClass("on")
+      .addClass("off");
+  } else if (difficulty == 2) {
+    $("#hard")
+      .removeClass("on")
+      .addClass("off");
+  }
+  difficulty = newDifficulty;
 }
+
 // After the user completes the chain, a new step is added.
 function addStep() {
   // Length 20 being the end of the game, stop the game if the length of the array is 20.
@@ -107,9 +128,11 @@ function repeatColors(number, sound) {
       if (newArr.length == 0) {
         // Continue onto the next step
         document.getElementById("victory").innerHTML = "Round Cleared";
-        setTimeout(function(){   addStep();
-        loadColors(); document.getElementById("victory").innerHTML = ""; }, 1250);
-      
+        setTimeout(function() {
+          addStep();
+          loadColors();
+          document.getElementById("victory").innerHTML = "";
+        }, 1250);
       }
       // If the user loses
     } else {
@@ -120,9 +143,12 @@ function repeatColors(number, sound) {
         reset();
       } else {
         // Add on the rest of the colors and redo the last step for the user.
-        colorArr = colorArr.concat(newArr);
-        newArr = [];
-        loadColors();
+        document.getElementById("victory").innerHTML = "Let's try that again";
+        setTimeout(function() {
+          colorArr = colorArr.concat(newArr);
+          newArr = [];
+          loadColors();
+        }, 1250);
       }
     }
   }
@@ -131,9 +157,9 @@ function repeatColors(number, sound) {
 function displayColors() {
   // Need to create a fade in effect for the colors
   if (colorArr.length == 0) {
-   clearTimeout(timeout);  done = true;
-      
-   
+    clearTimeout(timeout);
+    done = true;
+
     //   colorArr = newArr.slice(0);
   } else {
     if (colorArr[0] == 1) {
@@ -169,9 +195,11 @@ function reset() {
 }
 // Toggling the variable that determines if the user is penalizing for getting a step wrong.
 function toggleStrict() {
+      $("#turnStrict").toggleClass("on");
   if (strict) {
     strict = false;
     document.getElementById("turnStrict").innerHTML = "Strict (Off)";
+
   } else if (!strict) {
     strict = true;
     document.getElementById("turnStrict").innerHTML = "Strict (On)";
