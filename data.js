@@ -1,7 +1,8 @@
+
 // 0 = easy, 1= medium, 2= hard
 var difficulty = 1;
 // Time between the bounces. 1500 is easy and is 1.5 seconds, 1000 is medium and is 1 second, and 500 is hard and is half a second
-var time = 3000;
+var time = 1000;
 var currentStreak = document.getElementById("currentSteps");
 var highscore = document.getElementById("highScore");
 // The colors
@@ -9,6 +10,7 @@ var red = document.getElementById("redBlock");
 var blue = document.getElementById("blueBlock");
 var yellow = document.getElementById("yellowBlock");
 var green = document.getElementById("greenBlock");
+
 // Sounds
 var redSound = new Audio(
   "https://s3.amazonaws.com/freecodecamp/simonSound1.mp3"
@@ -122,7 +124,7 @@ function repeatColors(number, sound) {
 function displayColors() {
   // Need to create a fade in effect for the colors
   if (colorArr.length == 0) {
-    clearTimeout(timeout);
+    setTimeout(clearTimeout(timeout), 3000);
     done = true;
     //   colorArr = newArr.slice(0);
   } else {
