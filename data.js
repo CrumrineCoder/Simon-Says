@@ -97,7 +97,7 @@ function repeatColors(number, sound) {
             // If we finish the newArr array.
             if (newArr.length == 0) {
                 // Continue onto the next step 
-                if (colorArr.length == 3) {
+                if (colorArr.length == 20) {
                     document.getElementById("message").innerHTML = "You won by gaining a streak of 20! You can keep playing or you can reset. Another step will be added to entice you ;)";
                     setTimeout(function() {
                         addStep();
