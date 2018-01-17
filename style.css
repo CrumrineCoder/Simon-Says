@@ -1,3 +1,10 @@
+/* Entire Document */
+body {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+}
 /* Nav */
 
 nav {
@@ -21,6 +28,7 @@ nav {
   color: #4a9943;
 }
 
+/* Buttons */
 button{
    font-family: 'Roboto', sans-serif;
 }
@@ -28,9 +36,33 @@ button{
 #blocks > button{
   width: 100px; 
   height: 100px; 
+  border: 1px solid black; 
 }
 
-body{
-  text-align: center; 
-  font-family: 'Roboto', sans-serif;
+button:focus {outline:0;}
+
+#redBlock{
+  background: #D91B1A; 
 }
+#redBlock:hover{
+  background:  #6B0D0D; 
+}
+#blueBlock{
+  background: #5B17C2; 
+}
+#blueBlock:hover{
+  background:  #290D6B; 
+}
+#yellowBlock{
+  background: #CCCF18; 
+}
+#yellowBlock:hover{
+  background:  #879111; 
+}
+#greenBlock{
+  background: #25C217; 
+}
+#greenBlock:hover{
+  background:  #0D6B0F; 
+}
+
