@@ -32,10 +32,10 @@ function loadColors() {
   newArr = [];
   // Reset all the colors
   function myTimeoutFunction() {
-    red.style.background = "white";
-    blue.style.background = "white";
-    yellow.style.background = "white";
-    green.style.background = "white";
+    red.style.background = "#D91B1A";
+    blue.style.background = "#5B17C2";
+    yellow.style.background = "#CCCF18";
+    green.style.background = "#25C217";
     displayColors();
     // While the game is not done, keep Simon Says on an interval. 
     if (!done) {
@@ -101,22 +101,22 @@ function displayColors() {
   } else {
     if (colorArr[0] == 1) {
       // red
-      red.style.background = "red";
+      red.style.background = "#6B0D0D";
       redSound.play();
     }
     if (colorArr[0] == 2) {
       // blue
-      blue.style.background = "blue";
+      blue.style.background = "#290D6B";
       blueSound.play();
     }
     if (colorArr[0] == 3) {
       // yellow
-      yellow.style.background = "yellow";
+      yellow.style.background = "#879111";
       yellowSound.play();
     }
     if (colorArr[0] == 4) {
       //green
-      green.style.background = "green";
+      green.style.background = "#0D6B0F";
       greenSound.play();
     }
     newArr.push(colorArr[0]);
