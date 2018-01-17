@@ -73,7 +73,7 @@ function addStep() {
   }
 }
 // Function for the red, blue, yellow, and green buttons
-function repeatColors(number) {
+function repeatColors(number, sound) {
   // If the Simon Says is done showing the colors
   if (done) {
     // Clear the end slate htmls
@@ -81,9 +81,11 @@ function repeatColors(number) {
     document.getElementById("victory").innerHTML = "";
     // If the user clicked on the right one
     if (number == newArr[0]) {
-      // Add the correct thing to the colorArr from the newArr and remove it from the newArr.
+      // Add the correct thing to the colorArr from the newArr and remove it from the newArr.    
       colorArr.push(newArr[0]);
       newArr.shift();
+      // Play the appropriate sound
+      sound.play(); 
       // If we finish the newArr array.
       if (newArr.length == 0) {
         // Continue onto the next step
@@ -108,7 +110,6 @@ function repeatColors(number) {
 }
 // Called through an interval. This is for repeating the instructions back to the player. 
 function displayColors() {
-  console.log(colorArr); 
   // Need to create a fade in effect for the colors
   if (colorArr.length == 0) {
     clearTimeout(timeout);
