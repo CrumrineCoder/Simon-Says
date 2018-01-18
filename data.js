@@ -30,6 +30,7 @@ var personalBest = 0;
 window.onload = addStep();
 window.onload = loadColors();
 
+// The sequence for showing the players the color
 function loadColors() {
     done = false;
     newArr = [];
@@ -47,7 +48,7 @@ function loadColors() {
     }
     myTimeoutFunction();
 }
-
+// Change the difficulty of the game. This handles both changing the time variable and changing the difficulty buttons to indicate which difficulty it is. 
 function changeDifficulty(newDifficulty, newTime, label) {
     time = newTime;
     if (newDifficulty == 0) {
@@ -96,15 +97,18 @@ function repeatColors(number, sound) {
             sound.play();
             // If we finish the newArr array.
             if (newArr.length == 0) {
-                // Continue onto the next step 
+                // The player wins
                 if (colorArr.length == 20) {
                     document.getElementById("message").innerHTML = "You won by gaining a streak of 20! You can keep playing or you can reset. Another step will be added to entice you ;)";
+					// Wait 5.5 seconds before reloading. 
                     setTimeout(function() {
                         addStep();
                         loadColors();	
                     }, 5500);
+					// The player is on the way to winning
                 } else {
                     document.getElementById("message").innerHTML = "Round Cleared";
+					// Wait 1.25 seconds before reloading. 
                     setTimeout(function() {
                         addStep();
                         loadColors();
@@ -121,6 +125,7 @@ function repeatColors(number, sound) {
             } else {
                 // Add on the rest of the colors and redo the last step for the user.
                 document.getElementById("message").innerHTML = "Let's try that again";
+				// Wait 1.25 seconds before reloading. 
                 setTimeout(function() {
                     colorArr = colorArr.concat(newArr);
                     newArr = [];
