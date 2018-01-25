@@ -21,6 +21,8 @@ nav {
   font-family: "Circle", Verdana, Tahoma;
   text-align: center;
   vertical-align: middle;
+  position: fixed;
+  bottom: 0;
 }
 
 #nic {
@@ -39,8 +41,8 @@ nav {
   margin: auto;
   position: absolute;
   left: 0;
-  bottom: 0;
   right: 0;
+  top: 0;
   border: solid 10px #454545;
   border-radius: 100%;
   overflow: hidden;
@@ -98,7 +100,7 @@ button:focus {
   position: absolute;
   width: 250px;
   height: 250px;
-  top: 57%;
+  top: 45%;
   left: 50%;
   margin-left: -125px;
   margin-top: -125px;
