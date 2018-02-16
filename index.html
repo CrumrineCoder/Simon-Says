@@ -9,24 +9,13 @@
 </head>
 
 <body>
- <audio id="green">
-    <source src="http://torchcodelab.com/media/c_note.mp3" type="audio/mpeg"></source>
-  </audio>
-<audio id="red">
-    <source src="http://torchcodelab.com/media/d_note.mp3" type="audio/mpeg"></source>
-  </audio>
-<audio id="blue">
-    <source src="http://torchcodelab.com/media/e_note.mp3" type="audio/mpeg"></source>
-  </audio>
-<audio id="yellow">
-    <source src="http://torchcodelab.com/media/f_note.mp3" type="audio/mpeg"></source>
-	
+
   <div id="simonSaysContainer">
 
-    <button id="greenBlock" class="col-xs-6 button" onclick="repeatColors(4, greenSound)"></button>
-    <button id="redBlock" class="col-xs-6 button" onclick="repeatColors(1, redSound)"></button>
-    <button id="yellowBlock" class="col-xs-6 button" onclick="repeatColors(3, yellowSound)"></button>
-    <button id="blueBlock" class="col-xs-6 button" onclick="repeatColors(2,blueSound)"></button>
+    <button id="greenBlock" class="col-xs-6 button" onclick="repeatColors(4, 'green')"></button>
+    <button id="redBlock" class="col-xs-6 button" onclick="repeatColors(1, 'red')"></button>
+    <button id="yellowBlock" class="col-xs-6 button" onclick="repeatColors(3, 'yellow')"></button>
+    <button id="blueBlock" class="col-xs-6 button" onclick="repeatColors(2, 'blue')"></button>
 
   </div>
   <div id="control">
@@ -39,7 +28,19 @@
     <button id="hard" class="off" onclick="changeDifficulty(2, 600)">Hard</button>
     <p>Personal Best:<p id="highScore">0</p></p>
   </div>
-
+  <!-- Help from FreeCodeCamp on this part of the audio. The previous files I were using stopped working -->
+ <audio id="green">
+    <source src="http://torchcodelab.com/media/c_note.mp3" type="audio/mpeg"></source>
+  </audio>
+<audio id="red">
+    <source src="http://torchcodelab.com/media/d_note.mp3" type="audio/mpeg"></source>
+  </audio>
+<audio id="blue">
+    <source src="http://torchcodelab.com/media/e_note.mp3" type="audio/mpeg"></source>
+  </audio>
+<audio id="yellow">
+    <source src="http://torchcodelab.com/media/f_note.mp3" type="audio/mpeg"></source>
+	</audio>
    <nav>
     <div id="ad">
 	  <p id="message"> </p>

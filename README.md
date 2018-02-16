@@ -36,4 +36,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* I got help with the CSS on the FreeCodeCamp Slack.
+* I got help with the CSS on the FreeCodeCamp Slack. I got helped fixing the audio also from people on FreeCodeCamp.

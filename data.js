@@ -10,7 +10,14 @@ var red = document.getElementById("redBlock");
 var blue = document.getElementById("blueBlock");
 var yellow = document.getElementById("yellowBlock");
 var green = document.getElementById("greenBlock");
+
+var r = document.getElementById("red");
+var b = document.getElementById("blue");
+var y = document.getElementById("yellow");
+var g = document.getElementById("green");
 // Sounds
+// No longer needed: these broke for some reason and I got help from FreeCodeCamp on replacing them.
+/*
 var redSound = new Audio( "Sounds/simonSound1.mp3", {
     formats: ['ogg', 'mp3']
 });
@@ -23,9 +30,7 @@ var yellowSound = new Audio( "Sounds/simonSound3.mp3", {
 var greenSound = new Audio( "Sounds/simonSound4.mp3", {
     formats: ['ogg', 'mp3']
 });
-
-	   
-var typeWriter = new Audio("https://www.freesound.org/data/previews/256/256458_4772965-lq.mp3");
+*/
 // Interval
 var timeout;
 // The array of colors added to the chain that the user has to follow. We flip numbers between these two arrays constantly.
@@ -110,10 +115,10 @@ function repeatColors(number, sound) {
             colorArr.push(newArr[0]);
             newArr.shift();
             // Play the appropriate sound
-			console.log("Sound playing");
-			sound.currentTime = 0; 
-			console.log(sound);
-            sound.play();
+			 var s = document.getElementById(sound);
+			  // This is a property that scrubs the audio file back to its start.
+			  s.currentTime = 0;
+			  s.play();
 
             // If we finish the newArr array.
             if (newArr.length == 0) {
@@ -155,6 +160,8 @@ function repeatColors(number, sound) {
         }
     }
 }
+
+
 // Called through an interval. This is for repeating the instructions back to the player.
 function displayColors() {
 	console.log("displayColors");
@@ -166,35 +173,27 @@ function displayColors() {
     } else {
         if (colorArr[0] == 1) {
             // red
-			redSound.currentTime = 0;
             red.style.background = "#6B0D0D";
-			console.log("Sound playing");
-			console.log(redSound);
-            redSound.play();
+			r.currentTime = 0;
+			r.play();
         }
         if (colorArr[0] == 2) {
             // blue
-			blueSound.currentTime = 0;
             blue.style.background = "#290D6B";
-			console.log("Sound playing");
-			console.log(blueSound);
-            blueSound.play();
+			b.currentTime = 0;
+			b.play();
         }
         if (colorArr[0] == 3) {
             // yellow
-			yellowSound.currentTime = 0;
             yellow.style.background = "#879111";
-			console.log("Sound playing");
-			console.log(yellowSound);
-            yellowSound.play();
+			y.currentTime = 0;
+			y.play();
         }
         if (colorArr[0] == 4) {
             //green
-			greenSound.currentTime = 0;
             green.style.background = "#0D6B0F";
-			console.log("Sound playing");
-			console.log(greenSound);
-            greenSound.play();
+			g.currentTime = 0;
+			g.play();
         }
         newArr.push(colorArr[0]);
         colorArr.shift();
