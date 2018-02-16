@@ -1,6 +1,8 @@
 # Simon Says App
 
-This is a front end project built as part of FreeCodeCamp's cirriculum. The website hosts the game Simon Says for one player. 
+This is a web app that uses Javascript to play Simon Says. jQuery is used to change classes but other than that it is not used.
+
+This was built as part of FreeCodeCamp's front curriculum. The CSS took a while to figure out, but I got there eventually. I'm not happy with the Simon Says being loaded with position: absolute but if I return to this project I'll figure out a way to do it more elegantly.
 
 ## User Stories
 
