@@ -9,7 +9,18 @@
 </head>
 
 <body>
- 
+ <audio id="green">
+    <source src="http://torchcodelab.com/media/c_note.mp3" type="audio/mpeg"></source>
+  </audio>
+<audio id="red">
+    <source src="http://torchcodelab.com/media/d_note.mp3" type="audio/mpeg"></source>
+  </audio>
+<audio id="blue">
+    <source src="http://torchcodelab.com/media/e_note.mp3" type="audio/mpeg"></source>
+  </audio>
+<audio id="yellow">
+    <source src="http://torchcodelab.com/media/f_note.mp3" type="audio/mpeg"></source>
+	
   <div id="simonSaysContainer">
 
     <button id="greenBlock" class="col-xs-6 button" onclick="repeatColors(4, greenSound)"></button>
@@ -28,9 +39,10 @@
     <button id="hard" class="off" onclick="changeDifficulty(2, 600)">Hard</button>
     <p>Personal Best:<p id="highScore">0</p></p>
   </div>
-  <p id="message"> </p>
+
    <nav>
     <div id="ad">
+	  <p id="message"> </p>
       Simon Says App by
       <a href="https://crumrinecoder.github.io/Profile-Website-version2/" id="nic"> Nicolas Crumrine</span></a>
     </div>

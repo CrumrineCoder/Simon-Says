@@ -11,10 +11,21 @@ var blue = document.getElementById("blueBlock");
 var yellow = document.getElementById("yellowBlock");
 var green = document.getElementById("greenBlock");
 // Sounds
-var redSound = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound1.mp3");
-var blueSound = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound2.mp3");
-var yellowSound = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound3.mp3");
-var greenSound = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound4.mp3");
+var redSound = new Audio( "Sounds/simonSound1.mp3", {
+    formats: ['ogg', 'mp3']
+});
+var blueSound = new Audio( "Sounds/simonSound2.mp3", {
+    formats: ['ogg', 'mp3']
+});
+var yellowSound = new Audio( "Sounds/simonSound3.mp3", {
+    formats: ['ogg', 'mp3']
+});
+var greenSound = new Audio( "Sounds/simonSound4.mp3", {
+    formats: ['ogg', 'mp3']
+});
+
+	   
+var typeWriter = new Audio("https://www.freesound.org/data/previews/256/256458_4772965-lq.mp3");
 // Interval
 var timeout;
 // The array of colors added to the chain that the user has to follow. We flip numbers between these two arrays constantly.
@@ -32,10 +43,12 @@ window.onload = loadColors();
 
 // The sequence for showing the players the color
 function loadColors() {
+	console.log("loadColors");
     done = false;
     newArr = [];
     // Reset all the colors
     function myTimeoutFunction() {
+		console.log("timeOutFunction");
         red.style.background = "#D91B1A";
         blue.style.background = "#5B17C2";
         yellow.style.background = "#CCCF18";
@@ -50,6 +63,7 @@ function loadColors() {
 }
 // Change the difficulty of the game. This handles both changing the time variable and changing the difficulty buttons to indicate which difficulty it is. 
 function changeDifficulty(newDifficulty, newTime, label) {
+	console.log("changeDifficulty");
     time = newTime;
     if (newDifficulty == 0) {
         $("#easy").removeClass("off").addClass("on");
@@ -69,6 +83,7 @@ function changeDifficulty(newDifficulty, newTime, label) {
 }
 // After the user completes the chain, a new step is added.
 function addStep() {
+	console.log("addStep");
     // Length 20 being the end of the game, stop the game if the length of the array is 20.
     if (colorArr.length > personalBest) {
         personalBest = colorArr.length;
@@ -84,6 +99,7 @@ function addStep() {
 }
 // Function for the red, blue, yellow, and green buttons
 function repeatColors(number, sound) {
+	console.log("repeatColors");
     // If the Simon Says is done showing the colors
     if (done) {
         // Clear the end slate htmls
@@ -94,7 +110,11 @@ function repeatColors(number, sound) {
             colorArr.push(newArr[0]);
             newArr.shift();
             // Play the appropriate sound
+			console.log("Sound playing");
+			sound.currentTime = 0; 
+			console.log(sound);
             sound.play();
+
             // If we finish the newArr array.
             if (newArr.length == 0) {
                 // The player wins
@@ -137,6 +157,7 @@ function repeatColors(number, sound) {
 }
 // Called through an interval. This is for repeating the instructions back to the player.
 function displayColors() {
+	console.log("displayColors");
     // Need to create a fade in effect for the colors
     if (colorArr.length == 0) {
         clearTimeout(timeout);
@@ -145,22 +166,34 @@ function displayColors() {
     } else {
         if (colorArr[0] == 1) {
             // red
+			redSound.currentTime = 0;
             red.style.background = "#6B0D0D";
+			console.log("Sound playing");
+			console.log(redSound);
             redSound.play();
         }
         if (colorArr[0] == 2) {
             // blue
+			blueSound.currentTime = 0;
             blue.style.background = "#290D6B";
+			console.log("Sound playing");
+			console.log(blueSound);
             blueSound.play();
         }
         if (colorArr[0] == 3) {
             // yellow
+			yellowSound.currentTime = 0;
             yellow.style.background = "#879111";
+			console.log("Sound playing");
+			console.log(yellowSound);
             yellowSound.play();
         }
         if (colorArr[0] == 4) {
             //green
+			greenSound.currentTime = 0;
             green.style.background = "#0D6B0F";
+			console.log("Sound playing");
+			console.log(greenSound);
             greenSound.play();
         }
         newArr.push(colorArr[0]);
@@ -169,6 +202,7 @@ function displayColors() {
 }
 // Return everything to step 1
 function reset() {
+	console.log("reset");
     newArr = [];
     colorArr = [];
     addStep();
@@ -176,6 +210,7 @@ function reset() {
 }
 // Toggling the variable that determines if the user is penalizing for getting a step wrong.
 function toggleStrict() {
+	console.log("toggleStrict");
     $("#turnStrict").toggleClass("on");
     if (strict) {
         strict = false;
