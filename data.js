@@ -145,8 +145,11 @@ function repeatColors(number, sound) {
         } else {
             // If the strict setting is on, reset
             if (strict) {
-                document.getElementById("message").innerHTML = "You missed a button press and had strict mode on.";
-                reset();
+				document.getElementById("message").innerHTML = "You missed a button press and had strict mode on.";
+				setTimeout(function() {
+                        document.getElementById("message").innerHTML = "";
+						reset();
+                    }, 1250);      
             } else {
                 // Add on the rest of the colors and redo the last step for the user.
                 document.getElementById("message").innerHTML = "Let's try that again";
